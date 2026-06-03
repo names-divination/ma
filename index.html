@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>あうー</title>
+
+<style>
+
+body{
+  margin:0;
+  padding:20px;
+  background:#111;
+  color:white;
+  font-family:sans-serif;
+}
+
+h1{
+  margin-top:0;
+}
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(180px,1fr));
+
+  gap:20px;
+}
+
+.card{
+
+  background:#222;
+
+  border-radius:16px;
+
+  text-decoration:none;
+
+  color:white;
+
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:scale(1.03);
+}
+
+.card h2{
+  margin:0;
+  padding:20px;
+  font-size:18px;
+  text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>しかぽにょ</h1>
+
+<div class="grid" id="grid"></div>
+
+<script>
+
+fetch("mangas.json")
+
+.then(r => r.json())
+
+.then(data => {
+
+  const grid =
+    document.getElementById("grid");
+
+  data.forEach(manga => {
+
+    grid.innerHTML += `
+
+      <a class="card"
+      href="${manga.url}">
+
+        <h2>${manga.title}</h2>
+
+      </a>
+
+    `;
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
